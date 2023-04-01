@@ -1,21 +1,11 @@
 import React from "react";
 
-const Bookmark = ({ status, ...rest }) => {
-  const handleClick = () => {
-    rest.onToggleBookmark(rest._id);
-  };
-
-  const getClasses = () => {
-    let classes = "bi bi-star";
-    classes += status ? "-fill" : "";
-    return classes;
-  };
-
+const BookMark = ({ status, ...rest }) => {
   return (
-    <button className="btn btn-outline-warning" onClick={handleClick}>
-      <i className={getClasses()}></i>
+    <button className="btn btn-outline-warning" {...rest}>
+      <i className={"bi bi-star" + (status ? "-fill" : "")}></i>
     </button>
   );
 };
 
-export default Bookmark;
+export default BookMark;

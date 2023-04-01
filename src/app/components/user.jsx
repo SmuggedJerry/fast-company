@@ -1,37 +1,37 @@
 import React from "react";
 import Quality from "./quality";
-import Bookmark from "./bookmark";
-import MaxRate from "./maxRate";
-
-const User = ({ user, onToggleBookmark, onDelete }) => {
-  const handleDelete = () => {
-    onDelete(user._id);
-  };
+import BookMark from "./bookmark";
+const User = ({
+  _id,
+  name,
+  qualities,
+  profession,
+  completedMeetings,
+  rate,
+  onDelete,
+  bookmark,
+  onToggleBookMark,
+  users,
+}) => {
+  const maxRate = Math.max(...users.map((user) => user.rate));
   return (
     <tr>
-      <td>{user.name}</td>
+      <td>{name}</td>
       <td>
-        {user.qualities.map((quality) => (
+        {qualities.map((quality) => (
           <Quality key={quality._id} {...quality} />
         ))}
       </td>
-      <td>{user.profession.name}</td>
-      <td>{user.completedMeetings}</td>
+      <td>{profession.name}</td>
+      <td>{completedMeetings}</td>
       <td>
-        {user.rate}/<MaxRate users={user} />
+        {rate} /{maxRate}
       </td>
       <td>
-        <Bookmark
-          status={user.bookmark}
-          onToggleBookmark={onToggleBookmark}
-          _id={user._id}
-        />
+        <BookMark status={bookmark} onClick={() => onToggleBookMark(_id)} />
       </td>
       <td>
-        <button
-          className="btn btn-danger"
-          onClick={() => handleDelete(user._id)}
-        >
+        <button onClick={() => onDelete(_id)} className="btn btn-danger">
           delete
         </button>
       </td>
