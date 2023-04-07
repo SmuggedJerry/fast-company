@@ -26,7 +26,7 @@ const User = ({
             <td>{profession.name}</td>
             <td>{completedMeetings}</td>
             <td>
-                {rate} /{maxRate}
+                {rate} / {maxRate}
             </td>
             <td>
                 <BookMark
