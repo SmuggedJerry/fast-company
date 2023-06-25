@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { validator } from "../../utils/validator";
 import TextField from "../common/form/textField";
+import { useAuth } from "../../hooks/useAuth";
+import { useHistory } from "react-router-dom";
 
 const LoginForm = () => {
     const [data, setData] = useState({ email: "", password: "" });
     const [errors, setErrors] = useState({});
+    const history = useHistory();
+    const { logIn } = useAuth();
+    const [logInError, setLogInError] = useState(null);
 
-    const handleChange = ({ target }) => {
+    const handleChange = (target) => {
         setData((prevState) => ({
             ...prevState,
             [target.name]: target.value
         }));
+        setLogInError(null);
     };
 
     const validatorConfig = {
@@ -51,11 +57,16 @@ const LoginForm = () => {
 
     const isValid = Object.keys(errors).length === 0;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const isValid = validate();
         if (!isValid) return;
-        console.log(data);
+        try {
+            await logIn(data);
+            history.push("/");
+        } catch (error) {
+            setLogInError(error.message);
+        }
     };
 
     return (
@@ -76,9 +87,10 @@ const LoginForm = () => {
                 onChange={handleChange}
                 error={errors.password}
             />
+            {logInError && <p className="text-danger">{logInError}</p>}
             <button
                 type="submit"
-                disabled={!isValid}
+                disabled={!isValid || logInError}
                 className="btn btn-primary w-100 mx-auto"
             >
                 Войти
