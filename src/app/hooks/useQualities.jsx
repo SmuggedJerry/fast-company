@@ -27,7 +27,7 @@ export const QualitiesProvider = ({ children }) => {
         getQualities();
     }, []);
     const getQuality = (id) => {
-        return qualities.find((quality) => quality._id === id);
+        return qualities.find((q) => q._id === id);
     };
 
     function errorCatcher(error) {

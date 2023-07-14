@@ -6,16 +6,21 @@ const Main = () => {
     const handleClick = () => {
         initialize();
     };
-    return <div className="container mt-5">
-        <h1>Main page</h1>
-        <h3>Инициализация данных в FireBase</h3>
-        <ul>
-            <li>Status: {status}</li>
-            <li>Progress: {progress}%</li>
-            {error && <li>Error: {error}</li>}
-        </ul>
-        <button className="btn btn-primary" onClick={handleClick}>Инициализировать</button>
-        </div>;
+    return (
+        <div className="container mt-5">
+            <h1>Главная страница</h1>
+            <h3>Инициализация данных в FireBase</h3>
+            <ul>
+                <li>Статус: {status}</li>
+                <li>Прогресс: {progress}%</li>
+                {error && <li>Error: {error}</li>}
+            </ul>
+            <button className="btn btn-primary" onClick={handleClick}>
+                {" "}
+                Инициализировать
+            </button>
+        </div>
+    );
 };
 
 export default Main;

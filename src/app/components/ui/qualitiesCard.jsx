@@ -9,14 +9,13 @@ const QualitiesCard = ({ data }) => {
                 <h5 className="card-title">
                     <span>Качества</span>
                 </h5>
-                <p className='card-text'>
+                <p className="card-text">
                     <Qualities qualities={data} />
                 </p>
             </div>
         </div>
     );
 };
-
 QualitiesCard.propTypes = {
     data: PropTypes.array
 };
