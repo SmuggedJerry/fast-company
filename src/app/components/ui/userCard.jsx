@@ -32,9 +32,9 @@ const UserCard = ({ user }) => {
                     />
                     <div className="mt-3">
                         <h4>{user.name}</h4>
-                        <p className="text-secondary mb-1">
+                        <div className="text-secondary mb-1">
                             <Profession id={user.profession} />
-                        </p>
+                        </div>
                         <div className="text-muted">
                             <i
                                 className="bi bi-caret-down-fill text-primary"
